@@ -30,7 +30,7 @@ In Kubernetes, the scheduler is responsible for assigning pods to nodes in the c
 4. Tolerations
 
 ---
-# K8s Troubleshooting Playbook
+# Troubleshooting Playbook
 
 A practical playbook for finding the root cause of cluster problems and fixing them, in the right order.
 
