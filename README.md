@@ -1,4 +1,4 @@
-# kubernetes-troubleshooting-zero-to-hero
+# kubernetes-troubleshooting
 Learn how to troubleshoot the most common Kubernetes Issues
 
 ### ImagePullBackOff
