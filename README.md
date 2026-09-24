@@ -72,20 +72,12 @@ kubectl get events -A --sort-by='.lastTimestamp' | tail -50
 # Node conditions: ready? memory/disk/PID pressure?
 kubectl describe node <node> | grep -A10 Conditions
 
-# Host facts (run on the machine hosting the cluster / kubelet node)
-uptime                      # rebooted recently?
-free -h; df -h              # resource pressure
-cat /proc/sys/fs/inotify/max_user_instances   # fd/inotify limits
-cat /proc/sys/fs/inotify/max_user_watches
-cat /proc/sys/fs/file-nr    # overall fd usage
-docker ps                   # for kind/k3d: node containers "Up X hours" = restart evidence
-
 # System pod health = the "plumbing" of the cluster
 kubectl get pods -n kube-system -o wide
 kubectl get ds -A           # daemonsets: kindnet/calico (CNI), kube-proxy, node-exporter...
 ```
 
-**The plumbing layer is your #1 suspect when traffic breaks:** `kube-proxy` (ClusterIP/NodePort NAT), CNI/kindnet (pod-to-pod), and CoreDNS (name resolution).
+**The plumbing layer:** `kube-proxy` (ClusterIP/NodePort NAT), CNI/kindnet (pod-to-pod), and CoreDNS (name resolution).
 
 ## Step 3 — Read the crashing pod's real story
 
